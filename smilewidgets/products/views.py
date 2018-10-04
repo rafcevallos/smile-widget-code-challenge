@@ -4,8 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from products.models import Product, GiftCard
-from products.serializers import ProductSerializer, GiftCardSerializer
+from products.models import Product, GiftCard, ProductPrice
+from products.serializers import ProductSerializer, GiftCardSerializer, ProductPriceSerializer
 
 # Create your views here.
 
@@ -24,4 +24,13 @@ class GiftCards(viewsets.ModelViewSet):
     """
     queryset = GiftCard.objects.all()
     serializer_class = GiftCardSerializer
+    http_method_names = ['get', 'put', 'post']
+
+
+class ProductPrices(viewsets.ModelViewSet):
+    """
+    Endpoint that allows Product Prices to viewed and edited
+    """
+    queryset = ProductPrice.objects.all()
+    serializer_class = ProductPriceSerializer
     http_method_names = ['get', 'put', 'post']
