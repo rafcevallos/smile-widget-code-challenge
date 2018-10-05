@@ -32,7 +32,10 @@ class ProductPrice(models.Model):
     price = models.PositiveIntegerField(help_text='Seasonal Pricing')
     date_start = models.DateField()
     date_end = models.DateField(blank=True, null=True)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "product_price"
 
     def __str__(self):
         return '{} - {}'.format(self.code, self.formatted_price)
